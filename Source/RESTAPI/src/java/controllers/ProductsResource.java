@@ -57,8 +57,7 @@ public class ProductsResource {
             @FormParam("description") String description,
             @FormParam("coverLink") String coverLink,
             @FormParam("catID") int catID
-    //@FormParam ("status") String status,
-    //@FormParam ("isDelete") String isDelete 
+
     ) {
         Products product = new Products();
         product.setName(name);
