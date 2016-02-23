@@ -22,23 +22,24 @@ import utils.MakeConnection;
  *
  * @author Huy Trinh
  */
-public class AccountsDAO implements IAccounts{
+public class AccountsDAO implements IAccounts {
 
     @Override
-    public  boolean save(Accounts inData) {
+    public boolean save(Accounts inData) {
         Connection con = null;
         PreparedStatement stm = null;
 
         boolean result = false;
         try {
             con = MakeConnection.makeConnection();
-            String sql = "Insert into Accounts values(?,?,?,?,?)";
+            String sql = "Insert into Accounts values(?,?,?,?,?,?)";
             stm = con.prepareStatement(sql);
             stm.setString(1, inData.getUsername());
             stm.setString(2, inData.getPassword());
             stm.setString(3, inData.getRole());
             stm.setString(4, inData.getStatus());
             stm.setBoolean(5, inData.isDelete());
+            stm.setString(6, inData.getAddress());
 
             int row = stm.executeUpdate();
             if (row > 0) {
@@ -62,19 +63,21 @@ public class AccountsDAO implements IAccounts{
     }
 
     @Override
-public  boolean update(Accounts inData) {
+    public boolean update(Accounts inData) {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
         try {
             con = MakeConnection.makeConnection();
-            String sql = "Update Accounts set Password=?,Role=?,Status=?,IsDelete=? where Username=?";
+            String sql = "Update Accounts set Password=?,Role=?,Status=?,IsDelete=?,Address=? where Username=?";
             stm = con.prepareStatement(sql);
             stm.setString(1, inData.getPassword());
             stm.setString(2, inData.getRole());
             stm.setString(3, inData.getStatus());
             stm.setBoolean(4, inData.isDelete());
-            stm.setString(5, inData.getUsername());
+            stm.setString(5, inData.getAddress());
+            stm.setString(6, inData.getUsername());
+
             int row = stm.executeUpdate();
             if (row > 0) {
                 result = true;
@@ -95,8 +98,9 @@ public  boolean update(Accounts inData) {
         }
         return result;
     }
-@Override
-    public  List<Accounts> findAll() {
+
+    @Override
+    public List<Accounts> findAll() {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -115,7 +119,8 @@ public  boolean update(Accounts inData) {
                 account.setRole(rs.getString(4));
                 account.setStatus(rs.getString(5));
                 account.setDelete(rs.getBoolean(6));
-                     
+                account.setAddress(rs.getString(7));
+
                 result.add(account);
             }
 
@@ -139,7 +144,7 @@ public  boolean update(Accounts inData) {
     }
 
     @Override
-    public  Accounts findOneByUsername(String username) {
+    public Accounts findOneByUsername(String username) {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -149,7 +154,7 @@ public  boolean update(Accounts inData) {
             String sql = "Select * From Accounts Where Username=? ";
             stm = con.prepareStatement(sql);
             stm.setString(1, username);
-            
+
             rs = stm.executeQuery();
 
             while (rs.next()) {
@@ -160,6 +165,7 @@ public  boolean update(Accounts inData) {
                 result.setRole(rs.getString(4));
                 result.setStatus(rs.getString(5));
                 result.setDelete(rs.getBoolean(6));
+                result.setAddress(rs.getString(7));
 
             }
         } catch (SQLException ex) {
@@ -183,7 +189,7 @@ public  boolean update(Accounts inData) {
     }
 
     @Override
-    public  Accounts findOneByUsernameAndPassword(String username, String password) {
+    public Accounts findOneByUsernameAndPassword(String username, String password) {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -203,29 +209,22 @@ public  boolean update(Accounts inData) {
                 result.setRole(rs.getString(4));
                 result.setStatus(rs.getString(5));
                 result.setDelete(rs.getBoolean(6));
-
+                result.setAddress(rs.getString(7));
             }
-            
 
         } catch (SQLException e) {
-        }
-        finally {
+        } finally {
             try {
-                if (stm != null) 
-                {
+                if (stm != null) {
                     stm.close();
                 }
-                if (con != null) 
-                {
+                if (con != null) {
                     con.close();
                 }
-                if (rs != null) 
-                {
+                if (rs != null) {
                     rs.close();
                 }
-            } 
-                catch (Exception e) 
-                {
+            } catch (Exception e) {
                 e.getMessage();
             }
         }
@@ -239,7 +238,7 @@ public  boolean update(Accounts inData) {
      * @return
      */
     @Override
-    public  Accounts findOneById(int id) {
+    public Accounts findOneById(int id) {
         Connection con = null;
         PreparedStatement stm = null;
 
@@ -261,7 +260,7 @@ public  boolean update(Accounts inData) {
                 result.setRole(rs.getString(4));
                 result.setStatus(rs.getString(5));
                 result.setDelete(rs.getBoolean(6));
-             
+                result.setAddress(rs.getString(7));
             }
 
         } catch (SQLException e) {

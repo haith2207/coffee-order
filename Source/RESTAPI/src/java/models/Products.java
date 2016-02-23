@@ -16,11 +16,11 @@ public class Products implements Serializable {
     private int id;
     @Column(name = "Name",nullable = false, length = 40)
     private String name;
-    @Column(name = "ID", nullable = false)
+    @Column(name = "Price", nullable = false)
     private float price;
     @Column(name = "ImageLink",nullable = false)
     private String imageLink;
-    @Column(name = "Descriptons",nullable = false)
+    @Column(name = "Descriptions",nullable = false)
     private String descriptions;
     @Column(name = "CoverLink",nullable = false)
     private String coverLink;

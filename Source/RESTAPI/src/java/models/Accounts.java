@@ -20,21 +20,24 @@ public class Accounts implements Serializable {
 //
 //    @Column(name = "name", length = 255, nullable = false)
 //    private String name;
+
     @Id
-    @Column(name ="ID",nullable = false)
+    @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    
-    @Column(name = "Username", nullable = false,unique = true, length = 40)
+
+    @Column(name = "Username", nullable = false, unique = true, length = 40)
     private String username;
-    @Column(name = "Password", nullable = false,length = 40)
+    @Column(name = "Password", nullable = false, length = 40)
     private String password;
-    @Column(name = "Role", nullable = false,length = 40)
+    @Column(name = "Role", length = 40)
     private String role;
-    @Column(name = "Status", nullable = false,length = 15)
+    @Column(name = "Status", length = 15)
     private String status;
-    @Column(name = "IsDelete",nullable = false)
+    @Column(name = "IsDelete")
     private boolean isDelete;
+    @Column(name = "Address")
+    private String Address;
 
     public Accounts() {
         super();
@@ -88,4 +91,14 @@ public class Accounts implements Serializable {
     public void setDelete(boolean delete) {
         isDelete = delete;
     }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String Address) {
+        this.Address = Address;
+    }
+    
+   
 }
