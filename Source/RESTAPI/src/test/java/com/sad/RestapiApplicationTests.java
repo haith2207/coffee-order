@@ -1,5 +1,6 @@
-package com.haith;
+package com.sad;
 
+import com.sad.app.RestapiApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;

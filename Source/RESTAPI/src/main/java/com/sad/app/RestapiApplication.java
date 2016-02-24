@@ -1,4 +1,4 @@
-package com.haith;
+package com.sad.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RestapiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(RestapiApplication.class, args);
-	}
+    public static void main(String[] args) {
+
+        SpringApplication.run(RestapiApplication.class, args);
+    }
 }
