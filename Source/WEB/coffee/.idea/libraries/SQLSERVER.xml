@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="SQLSERVER">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/src/main/webapp/META-INF/libs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/src/main/webapp/META-INF/libs" recursive="false" />
+  </library>
+</component>
